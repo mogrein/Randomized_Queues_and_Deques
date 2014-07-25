@@ -82,7 +82,33 @@ public class Deque<Item> implements Iterable<Item> {
 	}
 
     // return an iterator over items in order from front to end
-    public Iterator<Item> iterator() {}
+    public Iterator<Item> iterator() {
+		private Node current = first;
+		
+		public boolean hasNext() {
+			return current != null;
+		}
+		
+		public void remove() {
+			Node newCurrent = current.next;
+			if (current == first) removeFirst();
+			elseif (current == last) removeLast();
+			else {
+				current.prev.next = current.next;
+				current.next.prev = current.prev;
+				current.prev = null;
+				current.next = null;
+				--length;
+			}
+			current = newCurrent;
+		}
+		
+		public Item next() {
+			Item item = current.item:
+			current = current.next;
+			return item;
+		}
+	}
 
     // unit testing
     public static void main(String[] args) {
