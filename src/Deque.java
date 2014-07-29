@@ -111,7 +111,7 @@ public class Deque<Item> implements Iterable<Item> {
 
             @Override
             public Item next() {
-                Item item = (Item) current.item;
+                Item item = current.item;
                 current = current.next;
                 return item;
             }
@@ -120,15 +120,15 @@ public class Deque<Item> implements Iterable<Item> {
 
     // unit testing
     public static void main(String[] args) {
-		Deque<Double> deq = new Deque();
+		Deque<Double> deq = new Deque<Double>();
 		deq.addFirst(5.);
         deq.addFirst(6.);
         deq.addFirst(7.);
         deq.addFirst(8.);
         deq.addFirst(9.);
-        for(Iterator it = deq.iterator(); it.hasNext();) {
-            it.next();
-            //System.out.println(deq.removeFirst());
+        for (Double aDeq : deq) {
+            //aDeq;
+            System.out.println(aDeq + " " + deq.removeFirst());
         }
 	}
 }
