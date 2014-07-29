@@ -127,7 +127,8 @@ public class Deque<Item> implements Iterable<Item> {
         deq.addFirst(8.);
         deq.addFirst(9.);
         for(Iterator it = deq.iterator(); it.hasNext();) {
-            System.out.println(deq.removeFirst());
+            it.next();
+            //System.out.println(deq.removeFirst());
         }
 	}
 }
