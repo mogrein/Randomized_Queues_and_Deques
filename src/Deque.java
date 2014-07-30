@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Created by mogrein on 22.07.14.
@@ -37,6 +38,7 @@ public class Deque<Item> implements Iterable<Item> {
 
     // insert the item at the front
     public void addFirst(Item item) {
+        if (item == null) throw new NullPointerException();
         Node oldfirst = first;
         first = new Node(item, oldfirst, null);
         if (isEmpty()) {
@@ -49,6 +51,7 @@ public class Deque<Item> implements Iterable<Item> {
 
     // insert the item at the end
     public void addLast(Item item) {
+        if (item == null) throw new NullPointerException();
 		Node oldlast = last;
         last = new Node(item, null, oldlast);
         if (isEmpty()) {
@@ -61,6 +64,7 @@ public class Deque<Item> implements Iterable<Item> {
 
     // delete and return the item at the front
     public Item removeFirst() {
+        if (this.isEmpty()) throw new NoSuchElementException();
 		Node oldfirst = first;
 		first = oldfirst.next;
 		if (first != null) {
@@ -73,6 +77,7 @@ public class Deque<Item> implements Iterable<Item> {
 
     // delete and return the item at the end
     public Item removeLast() {
+        if (this.isEmpty()) throw new NoSuchElementException();
 		Node oldlast = last;
 		last = oldlast.prev;
 		if (last != null) {
@@ -96,7 +101,8 @@ public class Deque<Item> implements Iterable<Item> {
 
             @Override
             public void remove() {
-                Node newCurrent = current.next;
+                throw new UnsupportedOperationException();
+                /*Node newCurrent = current.next;
                 if (current == first) removeFirst();
                 else if (current == last) removeLast();
                 else {
@@ -106,11 +112,12 @@ public class Deque<Item> implements Iterable<Item> {
                     current.next = null;
                     --length;
                 }
-                current = newCurrent;
+                current = newCurrent;*/
             }
 
             @Override
             public Item next() {
+                if (!hasNext()) throw new NoSuchElementException();
                 Item item = current.item;
                 current = current.next;
                 return item;
